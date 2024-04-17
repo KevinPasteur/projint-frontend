@@ -17,7 +17,6 @@ const baseDomain = "@heig-vd.ch";
 const userEmail = computed(() => user.value.email + baseDomain);
 
 const isValidEmailPrefix = computed(() => user.value.email.length > 0);
-const userName = ref("");
 
 const isValidPassword = computed(() => user.value.motDePasse.length >= 8);
 
@@ -46,6 +45,7 @@ const submitForm = async () => {
         // Reset form or redirect user here
         showErrors.value = false; // Reset error display on successful registration
       } else {
+        alert(data.message);
         throw new Error(data.message);
       }
     } catch (error) {
