@@ -24,6 +24,8 @@
 <script setup>
 import { ref } from "vue";
 import { useRouter } from "vue-router";
+import { toast } from "vue3-toastify";
+import "vue3-toastify/dist/index.css";
 
 const router = useRouter();
 const loginEmail = ref("");
@@ -42,14 +44,27 @@ const submitLoginForm = async () => {
     const data = await response.json();
     if (response.ok) {
       localStorage.setItem("token", data.token);
-      alert("Connexion réussie!");
-      router.push({ name: "boredRoom" }); // Rediriger vers BoredRoomView
+      // Rediriger puis afficher le toast de succès
+      router.push({ name: "boredRoom" }).then(() => {
+        toast.success("Connexion réussie!", {
+          autoClose: 2000,
+        });
+      });
     } else {
-      throw new Error(data.message);
+      // Utiliser toast pour les erreurs serveur
+      toast.error(
+        data.message || "Une erreur est survenue lors de la connexion.",
+        {
+          autoClose: 5000,
+        }
+      );
     }
   } catch (error) {
     console.error("Erreur de connexion", error);
-    alert(error.message || "Erreur de connexion");
+    // Utiliser toast pour les erreurs de réseau ou autres erreurs inattendues
+    toast.error(error.message || "Erreur de connexion", {
+      autoClose: 5000,
+    });
   }
 };
 </script>
