@@ -1,23 +1,34 @@
 <template>
+  <!-- <img
+      alt="Vue logo"
+      class="logo"
+      src="@/assets/logo.svg"
+      width="125"
+      height="125"
+    /> -->
   <div class="login-view">
-    <h1>Connexion</h1>
     <form @submit.prevent="submitLoginForm">
-      <div>
-        <label for="email">Email:</label>
-        <input id="email" type="email" v-model="loginEmail" required />
+      <label for="email">Email</label>
+      <div class="champs" id="emailInputContainer">
+        <input id="email" type="email" v-model="loginEmail" placeholder="prenom.nom" required />
+        <span class="email-domain">@heig-vd.ch</span>
       </div>
-      <div>
-        <label for="password">Mot de Passe:</label>
+      <div class="champs">
+        <label for="password">Mot de Passe</label>
         <input
           id="password"
           type="password"
           v-model="loginPassword"
           required
           minlength="8"
+          placeholder="********"
         />
       </div>
-      <button type="submit">Connexion</button>
+      <div class="boutton">
+        <button type="submit">Me Connecter</button>
+      </div>
     </form>
+    <p class="lien">J'ai oublié mon mot-de-passe</p>
   </div>
 </template>
 
@@ -56,4 +67,92 @@ const submitLoginForm = async () => {
 
 <style scoped>
 /* Votre CSS ici */
+.login-view {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+#email {
+  width: 73%;
+  height: 40px;
+  border-radius: 10px;
+  background-color: #F1F1F1;
+  border-style: none;
+  padding: 0 1rem 0 1rem;
+  font-family: "Figtree", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+}
+
+#emailInputContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+label {
+  display: block;
+  font-family: "Figtree", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 700;
+  font-style: normal;
+  margin-bottom: 0.2rem;
+}
+
+input{
+  width: 100%;
+  height: 40px;
+  border-radius: 10px;
+  background-color: #F1F1F1;
+  color: #1C1C1C;
+  border-style: none;
+  padding: 0 1rem 0 1rem;
+  font-family: "Figtree", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+}
+
+::placeholder {
+  color: #BCBCBC;
+}
+
+.champs {
+  margin-bottom: 2rem;
+}
+
+.button {
+  display: flex;
+  justify-content: center;
+}
+
+button {
+  font-family: "Figtree", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 700;
+  font-style: normal;
+  width: 100%;
+  height:60px;
+  border-radius: 10px;
+  border-style: none;
+  color:white;
+  background-color: #9B00FF;
+}
+
+.lien{
+  text-decoration: underline;
+  font-family: "Figtree", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+}
+
+form{
+  width: 100%;
+  margin: 0 1rem 0 1rem;
+  max-width: 400px;
+}
 </style>
