@@ -1,14 +1,14 @@
 <template>
-  <!-- <img
+  <div class="login-view">
+    <div class="centreVertical">
+    <img
       alt="Vue logo"
       class="logo"
-      src="@/assets/logo.svg"
-      width="125"
-      height="125"
-    /> -->
-  <div class="login-view">
+      src="@/assets/unboredAccueil.svg"
+      width="200px"
+    />
     <form @submit.prevent="submitLoginForm">
-      <label for="email">Email</label>
+      <label for="email">Adresse HEIG</label>
       <div class="champs" id="emailInputContainer">
         <input id="email" type="email" v-model="loginEmail" placeholder="prenom.nom" required />
         <span class="email-domain">@heig-vd.ch</span>
@@ -28,8 +28,9 @@
         <button type="submit">Me Connecter</button>
       </div>
     </form>
-    <p class="lien">J'ai oublié mon mot-de-passe</p>
+    <p class="lien">J'ai oublié mon mot de passe</p>
   </div>
+</div>
 </template>
 
 <script setup>
@@ -82,24 +83,23 @@ const submitLoginForm = async () => {
 
 <style scoped>
 /* Votre CSS ici */
+
+img {
+  margin-bottom: 1rem;
+}
+
 .login-view {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 84vh;
+}
+
+.centreVertical {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 1rem;
-}
-
-#email {
-  width: 73%;
-  height: 40px;
-  border-radius: 10px;
-  background-color: #F1F1F1;
-  border-style: none;
-  padding: 0 1rem 0 1rem;
-  font-family: "Figtree", sans-serif;
-  font-optical-sizing: auto;
-  font-weight: 400;
-  font-style: normal;
 }
 
 #emailInputContainer {
@@ -123,6 +123,19 @@ input{
   border-radius: 10px;
   background-color: #F1F1F1;
   color: #1C1C1C;
+  border-style: none;
+  padding: 0 1rem 0 1rem;
+  font-family: "Figtree", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+}
+
+#email {
+  width: 65%;
+  height: 40px;
+  border-radius: 10px;
+  background-color: #F1F1F1;
   border-style: none;
   padding: 0 1rem 0 1rem;
   font-family: "Figtree", sans-serif;
@@ -155,9 +168,12 @@ button {
   border-style: none;
   color:white;
   background-color: #9B00FF;
+  margin-bottom: 0;
+  padding:0;
 }
 
 .lien{
+  margin-top: 0.5rem;
   text-decoration: underline;
   font-family: "Figtree", sans-serif;
   font-optical-sizing: auto;
