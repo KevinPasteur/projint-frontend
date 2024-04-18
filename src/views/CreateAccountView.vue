@@ -1,5 +1,6 @@
 <script setup>
 import { ref, computed } from "vue";
+import { useRouter } from "vue-router";
 
 const user = ref({
   pseudo: "",
@@ -11,7 +12,7 @@ const user = ref({
   idCentreInterets: [],
   idEmojis: [],
 });
-
+const router = useRouter();
 const showErrors = ref(false);
 const baseDomain = "@heig-vd.ch";
 const userEmail = computed(() => user.value.email + baseDomain);
@@ -42,8 +43,13 @@ const submitForm = async () => {
       const data = await response.json();
       if (response.ok) {
         console.log("Utilisateur créé avec succès", data);
+        localStorage.setItem("token", data.token);
+        //set local storage userID
+        localStorage.setItem("userID", data.userId);
         // Reset form or redirect user here
-        showErrors.value = false; // Reset error display on successful registration
+        showErrors.value = false;
+        alert("Compte créé avec succès!");
+        router.push({ name: "boredRoom" }); // Redirect to BoredRoomView // Reset error display on successful registration
       } else {
         alert(data.message);
         throw new Error(data.message);
