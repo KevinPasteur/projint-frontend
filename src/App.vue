@@ -27,6 +27,7 @@ socket.off();
         <RouterLink to="/test">Test</RouterLink>
         <RouterLink to="/createAccount">Create Account</RouterLink>
         <RouterLink to="/login">Login</RouterLink>
+        <RouterLink to="/signup-with-code">Signup With Code</RouterLink>
       </nav>
     </div>
   </header>
