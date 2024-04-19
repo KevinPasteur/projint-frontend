@@ -1,6 +1,8 @@
 <script setup>
 import { ref, computed } from "vue";
 import { useRouter } from "vue-router";
+import { toast } from "vue3-toastify";
+import "vue3-toastify/dist/index.css";
 
 const user = ref({
   pseudo: "",
@@ -18,7 +20,6 @@ const baseDomain = "@heig-vd.ch";
 const userEmail = computed(() => user.value.email + baseDomain);
 
 const isValidEmailPrefix = computed(() => user.value.email.length > 0);
-
 const isValidPassword = computed(() => user.value.motDePasse.length >= 8);
 
 const formIsValid = computed(
@@ -44,14 +45,12 @@ const submitForm = async () => {
       if (response.ok) {
         console.log("Utilisateur créé avec succès", data);
         localStorage.setItem("token", data.token);
-        //set local storage userID
         localStorage.setItem("userID", data.userId);
-        // Reset form or redirect user here
         showErrors.value = false;
-        alert("Compte créé avec succès!");
-        router.push({ name: "boredRoom" }); // Redirect to BoredRoomView // Reset error display on successful registration
+        toast.success("Compte créé avec succès!");
+        router.push({ name: "boredRoom" });
       } else {
-        alert(data.message);
+        toast.error(data.message);
         throw new Error(data.message);
       }
     } catch (error) {
