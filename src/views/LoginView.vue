@@ -1,14 +1,14 @@
 <template>
-  <!-- <img
+  <div class="login-view">
+    <div class="centreVertical">
+    <img
       alt="Vue logo"
       class="logo"
-      src="@/assets/logo.svg"
-      width="125"
-      height="125"
-    /> -->
-  <div class="login-view">
+      src="@/assets/unboredAccueil.svg"
+      width="200px"
+    />
     <form @submit.prevent="submitLoginForm">
-      <label for="email">Email</label>
+      <label for="email">Adresse HEIG</label>
       <div class="champs" id="emailInputContainer">
         <input
           id="email"
@@ -34,8 +34,9 @@
         <button type="submit">Me Connecter</button>
       </div>
     </form>
-    <p class="lien">J'ai oublié mon mot-de-passe</p>
+    <p class="lien">J'ai oublié mon mot de passe</p>
   </div>
+</div>
 </template>
 
 <script setup>
@@ -90,7 +91,18 @@ const submitLoginForm = async () => {
 
 <style scoped>
 /* Votre CSS ici */
+img {
+  margin-bottom: 1rem;
+}
+
 .login-view {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 84vh;
+}
+
+.centreVertical {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -101,7 +113,7 @@ const submitLoginForm = async () => {
   width: 73%;
   height: 40px;
   border-radius: 10px;
-  background-color: #f1f1f1;
+  background-color: #F1F1F1;
   border-style: none;
   padding: 0 1rem 0 1rem;
   font-family: "Figtree", sans-serif;
@@ -139,17 +151,16 @@ input {
   font-style: normal;
 }
 
+#email {
+  width: 65%;
+}
+
 ::placeholder {
   color: #bcbcbc;
 }
 
 .champs {
   margin-bottom: 2rem;
-}
-
-.button {
-  display: flex;
-  justify-content: center;
 }
 
 button {
@@ -165,7 +176,7 @@ button {
   background-color: #9b00ff;
 }
 
-.lien {
+.lien{
   text-decoration: underline;
   font-family: "Figtree", sans-serif;
   font-optical-sizing: auto;
@@ -173,7 +184,7 @@ button {
   font-style: normal;
 }
 
-form {
+form{
   width: 100%;
   margin: 0 1rem 0 1rem;
   max-width: 400px;
