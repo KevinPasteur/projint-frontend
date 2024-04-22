@@ -32,17 +32,13 @@ const formIsValid = computed(
 );
 
 const submitForm = async () => {
-  showErrors.value = true; // Attempt to submit, show errors if there are any
+  showErrors.value = true; // Show errors if there are any on attempting to submit
   user.value.email = userEmail.value;
   if (formIsValid.value) {
     try {
-      const response = await fetch("http://localhost:5000/create-user", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(user.value),
-      });
-      const data = await response.json();
-      if (response.ok) {
+      const response = await API.post("/create-user", user.value);
+      const data = response.data;
+      if (response.status === 200) {
         console.log("Utilisateur créé avec succès", data);
         localStorage.setItem("token", data.token);
         localStorage.setItem("userID", data.userId);
@@ -55,6 +51,7 @@ const submitForm = async () => {
       }
     } catch (error) {
       console.error("Erreur de création d'utilisateur", error);
+      toast.error("Erreur lors de la création du compte : " + error.message);
     }
   }
 };

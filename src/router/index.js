@@ -6,6 +6,7 @@ import LoginView from "../views/LoginView.vue";
 import SignupWithCodeView from "../views/SignupWithCodeView.vue";
 import { toast } from "vue3-toastify";
 import "vue3-toastify/dist/index.css";
+import API from "../axiosConfig";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -57,16 +58,27 @@ const router = createRouter({
       name: "login",
       component: LoginView,
     },
+
     {
       path: "/boredRoom",
       name: "boredRoom",
       component: BoredRoomView,
-      beforeEnter: (to, from, next) => {
+      beforeEnter: async (to, from, next) => {
         const token = localStorage.getItem("token");
-        if (token) {
-          next(); // allow the navigation
-        } else {
-          next({ name: "home" }); // redirect to home if no token
+        if (!token) {
+          toast.error("Accès refusé. Veuillez vous connecter svp.");
+          next({ name: "login" }); // Redirect to login if no token found
+          return; // Stop execution if there's no token
+        }
+
+        try {
+          // The token is automatically included by the Axios interceptor
+          await API.post("/validate-token");
+          next(); // If the token is valid, continue
+        } catch (error) {
+          console.error("Error validating token:", error);
+          toast.error("Accès refusé. Veuillez vous connecter svp.");
+          next({ name: "login" }); // Redirect to login if token validation fails
         }
       },
     },
