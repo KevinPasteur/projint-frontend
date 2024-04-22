@@ -10,7 +10,13 @@
     <form @submit.prevent="submitLoginForm">
       <label for="email">Adresse HEIG</label>
       <div class="champs" id="emailInputContainer">
-        <input id="email" type="email" v-model="loginEmail" placeholder="prenom.nom" required />
+        <input
+          id="email"
+          type="text"
+          v-model="loginEmail"
+          placeholder="prenom.nom"
+          required
+        />
         <span class="email-domain">@heig-vd.ch</span>
       </div>
       <div class="champs">
@@ -34,7 +40,7 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
+import { ref, computed } from "vue";
 import { useRouter } from "vue-router";
 import { toast } from "vue3-toastify";
 import "vue3-toastify/dist/index.css";
@@ -42,6 +48,8 @@ import "vue3-toastify/dist/index.css";
 const router = useRouter();
 const loginEmail = ref("");
 const loginPassword = ref("");
+const baseDomain = "@heig-vd.ch";
+const userEmail = computed(() => loginEmail.value + baseDomain);
 
 const submitLoginForm = async () => {
   try {
@@ -49,7 +57,7 @@ const submitLoginForm = async () => {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
-        email: loginEmail.value,
+        email: userEmail.value,
         motDePasse: loginPassword.value,
       }),
     });
@@ -83,7 +91,6 @@ const submitLoginForm = async () => {
 
 <style scoped>
 /* Votre CSS ici */
-
 img {
   margin-bottom: 1rem;
 }
@@ -133,15 +140,6 @@ input{
 
 #email {
   width: 65%;
-  height: 40px;
-  border-radius: 10px;
-  background-color: #F1F1F1;
-  border-style: none;
-  padding: 0 1rem 0 1rem;
-  font-family: "Figtree", sans-serif;
-  font-optical-sizing: auto;
-  font-weight: 400;
-  font-style: normal;
 }
 
 ::placeholder {
@@ -150,11 +148,6 @@ input{
 
 .champs {
   margin-bottom: 2rem;
-}
-
-.button {
-  display: flex;
-  justify-content: center;
 }
 
 button {
@@ -182,8 +175,6 @@ button {
 }
 
 form{
-  width: 100%;
-  margin: 0 1rem 0 1rem;
   max-width: 400px;
 }
 </style>
