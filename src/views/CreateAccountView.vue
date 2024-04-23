@@ -118,7 +118,7 @@ const submitForm = async () => {
           <input type="checkbox" v-model="user.anonyme" id="anonyme" />
           <label for="anonyme" class="labelAnonyme">Je souhaite afficher mon pseudo pour garder mon anonymat sur l'application</label>
         </div>
-        <button type="submit">Créer un compte</button>
+        <button type="submit">Valider</button>
       </form>
     </div>
   </div>
@@ -148,6 +148,7 @@ button {
   font-optical-sizing: auto;
   font-weight: 700;
   font-style: normal;
+  font-size: 16px;
   width: 100%;
   height:60px;
   border-radius: 10px;
@@ -163,7 +164,8 @@ h1 {
   font-optical-sizing: auto;
   font-weight: 700;
   font-style: normal;
-  margin-bottom: 1rem;
+  font-size: 18px;
+  margin-bottom: 1.5rem;
 }
 
 label {
@@ -173,6 +175,7 @@ label {
   font-weight: 700;
   font-style: normal;
   margin-bottom: 0.2rem;
+  font-size: 16px;
 }
 
 input{
@@ -187,6 +190,7 @@ input{
   font-optical-sizing: auto;
   font-weight: 400;
   font-style: normal;
+  font-size: 16px;
 }
 
 #anonyme {

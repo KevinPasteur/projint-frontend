@@ -89,6 +89,10 @@ const submitCode = async () => {
   transform: translate(-50%, -50%); /* Centrer l'élément verticalement et horizontalement */
 }
 
+label {
+  font-size: 16px;
+}
+
 .containerImg {
   display: flex;
   justify-content: center;
@@ -115,6 +119,7 @@ button {
   font-optical-sizing: auto;
   font-weight: 700;
   font-style: normal;
+  font-size: 16px;
   width: 100%;
   height: 60px;
   border-radius: 10px;
@@ -179,6 +184,7 @@ input {
   font-optical-sizing: auto;
   font-weight: 400;
   font-style: normal;
+  font-size: 16px;
   margin-bottom: 0.5rem;
   text-align: center;
 }
@@ -203,5 +209,6 @@ input {
   font-optical-sizing: auto;
   font-weight: 400;
   font-style: normal;
+  font-size: 14px;
 }
 </style>

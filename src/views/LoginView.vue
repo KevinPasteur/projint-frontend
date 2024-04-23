@@ -134,6 +134,7 @@ label {
   font-optical-sizing: auto;
   font-weight: 700;
   font-style: normal;
+  font-size:16px;
   margin-bottom: 0.2rem;
 }
 
@@ -149,6 +150,7 @@ input {
   font-optical-sizing: auto;
   font-weight: 400;
   font-style: normal;
+  font-size: 16px;
 }
 
 #email {
@@ -174,6 +176,7 @@ button {
   font-optical-sizing: auto;
   font-weight: 700;
   font-style: normal;
+  font-size: 16px;
   height: 60px;
   border-radius: 10px;
   border-style: none;
@@ -245,6 +248,7 @@ button {
   font-optical-sizing: auto;
   font-weight: 400;
   font-style: normal;
+  font-size: 14px;
 }
 
 form{
