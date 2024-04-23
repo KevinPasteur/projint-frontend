@@ -4,6 +4,10 @@ import CreateAccountView from "../views/CreateAccountView.vue";
 import BoredRoomView from "../views/BoredRoomView.vue";
 import LoginView from "../views/LoginView.vue";
 import SignupWithCodeView from "../views/SignupWithCodeView.vue";
+import ChatRoomsView from "../views/ChatRoomsView.vue";
+import ChatView from "@/views/ChatView.vue";
+import CreateRoomView from "@/views/CreateRoomView.vue";
+
 import { toast } from "vue3-toastify";
 import "vue3-toastify/dist/index.css";
 import API from "../axiosConfig";
@@ -58,10 +62,25 @@ const router = createRouter({
       name: "login",
       component: LoginView,
     },
+    {
+      path: "/boredroom",
+      name: "boredroom",
+      component: ChatRoomsView,
+    },
+    {
+      path: "/boredroom/:roomId",
+      name: "chatroom",
+      component: ChatView,
+    },
+    {
+      path: "/createroom",
+      name: "createroom",
+      component: CreateRoomView,
+    },
 
     {
-      path: "/boredRoom",
-      name: "boredRoom",
+      path: "/boredRoomv1",
+      name: "boredRoomv1",
       component: BoredRoomView,
       beforeEnter: async (to, from, next) => {
         const token = localStorage.getItem("token");
