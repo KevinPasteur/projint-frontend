@@ -163,17 +163,80 @@ input {
   margin-bottom: 2rem;
 }
 
+.button {
+  display: flex;
+  justify-content: center;
+
+}
+
 button {
   font-family: "Figtree", sans-serif;
   font-optical-sizing: auto;
   font-weight: 700;
   font-style: normal;
-  width: 100%;
   height: 60px;
   border-radius: 10px;
   border-style: none;
   color: white;
   background-color: #9b00ff;
+}
+
+@media (min-width: 769px) {
+  button {
+    width: 400px;
+  }
+  #email {
+  width: 65%;
+}
+}
+
+@media (max-width: 768px) {
+  button {
+    min-width: 400px;
+    max-width: 400px;
+  }
+  #email {
+  width: 75%;
+}
+}
+
+@media (max-width: 425px) {
+  .centreVertical{
+    width: 360px;
+  }
+  button {
+    min-width: 360px;
+    max-width: 360px;
+  }
+  #email {
+  width: 72%;
+}
+}
+
+@media (max-width: 375px) {
+  .centreVertical{
+    width: 310px;
+  }
+  button {
+    min-width: 310px;
+    max-width: 310px;
+  }
+  #email {
+  width: 67%;
+}
+}
+
+@media (max-width: 320px) {
+  .centreVertical{
+    width: 255px;
+  }
+  button {
+    min-width: 255px;
+    max-width:255px;
+  }
+  #email {
+  width: 60%;
+}
 }
 
 .lien{

@@ -216,6 +216,30 @@ input{
   align-items: center;
 }
 
+@media (max-width: 768px) {
+  #email {
+  width: 75%;
+  }
+}
+
+@media (max-width: 425px) {
+  #email {
+  width: 72%;
+}
+}
+
+@media (max-width: 375px) {
+  #email {
+  width: 67%;
+}
+}
+
+@media (max-width: 320px) {
+  #email {
+  width: 60%;
+}
+}
+
 p{
   font-size: 12px;
 }
