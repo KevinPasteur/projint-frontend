@@ -1,10 +1,22 @@
 <template>
   <div class="chat-room">
     <button @click="$router.push('/boredroom')">Back to Boredroom</button>
-    <h2>Chat Room: {{ roomId }}</h2>
+    <h2>Chat Room: {{ roomName }}</h2>
     <div class="messages">
       <div v-for="message in messages" :key="message.id">
-        <span class="sender">Test</span>: {{ message.message.content }}
+        {{
+          new Date(message.message.timestamp).toLocaleTimeString([], {
+            hour: "2-digit",
+            minute: "2-digit",
+          })
+        }}
+        -
+        <span
+          class="sender"
+          :class="{ 'my-message': message.message.senderId === userId }"
+        >
+          {{ username }}</span
+        >: {{ message.message.content }}
       </div>
     </div>
     <div class="input-area">
@@ -26,7 +38,10 @@ export default {
   data() {
     return {
       roomId: null,
+      roomName: "",
+      roomDescription: "",
       userId: "", // ID de l'utilisateur connecté
+      username: "", // Nom de l'utilisateur connecté
       socket: null,
       messages: [],
       messageText: "",
@@ -34,29 +49,20 @@ export default {
   },
   mounted() {
     socket.on("roomJoined", ({ roomId }) => {
-      console.log("J'ai join");
-      // on roomJoin Check if roomExist or go back to boredroom
+      this.userId = JSON.parse(localStorage.getItem("user")).userId;
+      this.username = JSON.parse(localStorage.getItem("user")).username;
 
       axios
-        .get("http://localhost:5000/rooms/" + roomId)
+        .get("http://localhost:5000/api/rooms/" + roomId)
         .then((response) => {
-          console.log(response);
-          if (!response.data) {
-            //this.$router.push("/boredroom");
-          }
+          if (!response.data.roomId) this.$router.push("/boredroom");
+
+          this.roomId = response.data.roomId;
+          this.messages = response.data.messages;
+          this.roomName = response.data.name;
+          this.roomDescription = response.data.description;
         })
-        .catch((error) => {
-          this.$router.push("/boredroom");
-        });
-
-      //get previous messages
-      socket.emit("getMessages", roomId);
-
-      this.roomId = roomId;
-    });
-
-    socket.on("previousMessages", (messages) => {
-      this.messages = messages;
+        .catch((error) => {});
     });
 
     socket.on("newMessage", (message) => {
@@ -69,7 +75,6 @@ export default {
   },
   methods: {
     sendMessage() {
-      console.log(this.roomId);
       if (this.messageText.trim() !== "") {
         socket.emit("sendMessage", {
           roomId: this.roomId,
@@ -107,5 +112,9 @@ export default {
 }
 .input-area {
   /* Styles pour la zone de saisie */
+}
+
+.my-message {
+  color: green;
 }
 </style>
