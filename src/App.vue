@@ -5,25 +5,21 @@ import HelloWorld from "./components/HelloWorld.vue";
 import { socket } from "@/socket";
 
 // remove any existing listeners (after a hot module replacement)
+
 socket.off();
 </script>
 
 <template>
-  <header>
-      <nav>
-        <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/about">About</RouterLink>
-        <RouterLink to="/test">Test</RouterLink>
-        <RouterLink to="/createAccount">Create Account</RouterLink>
-        <RouterLink to="/login">Login</RouterLink>
-        <RouterLink to="/signup-with-code">Signup With Code</RouterLink>
-      </nav>
-  </header>
-
   <RouterView />
 </template>
 
 <style scoped>
+@import url("https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300..900;1,300..900&display=swap");
+
+* {
+  font-family: "Figtree";
+}
+
 header {
   line-height: 1.5;
   max-height: 100vh;
