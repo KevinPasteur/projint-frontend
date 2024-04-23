@@ -143,54 +143,13 @@ const submitForm = async () => {
   align-items: center;
 }
 
-button {
-  font-family: "Figtree", sans-serif;
-  font-optical-sizing: auto;
-  font-weight: 700;
-  font-style: normal;
-  font-size: 16px;
-  width: 100%;
-  height:60px;
-  border-radius: 10px;
-  border-style: none;
-  color:white;
-  background-color: #9B00FF;
-  margin-bottom: 0;
-  padding:0;
-}
-
-h1 {
-  font-family: "Figtree", sans-serif;
-  font-optical-sizing: auto;
-  font-weight: 700;
-  font-style: normal;
-  font-size: 18px;
-  margin-bottom: 1.5rem;
-}
-
 label {
   display: block;
-  font-family: "Figtree", sans-serif;
-  font-optical-sizing: auto;
-  font-weight: 700;
-  font-style: normal;
   margin-bottom: 0.2rem;
-  font-size: 16px;
 }
 
 input{
   width: 100%;
-  height: 40px;
-  border-radius: 10px;
-  background-color: #F1F1F1;
-  color: #1C1C1C;
-  border-style: none;
-  padding: 0 1rem 0 1rem;
-  font-family: "Figtree", sans-serif;
-  font-optical-sizing: auto;
-  font-weight: 400;
-  font-style: normal;
-  font-size: 16px;
 }
 
 #anonyme {
@@ -208,10 +167,6 @@ input{
 
 .prenom{
   width: 48%;
-}
-
-#email {
-  width: 65%;
 }
 
 .email-input-container {

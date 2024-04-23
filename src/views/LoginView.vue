@@ -109,19 +109,6 @@ img {
   gap: 1rem;
 }
 
-#email {
-  width: 73%;
-  height: 40px;
-  border-radius: 10px;
-  background-color: #F1F1F1;
-  border-style: none;
-  padding: 0 1rem 0 1rem;
-  font-family: "Figtree", sans-serif;
-  font-optical-sizing: auto;
-  font-weight: 400;
-  font-style: normal;
-}
-
 #emailInputContainer {
   display: flex;
   justify-content: space-between;
@@ -129,32 +116,7 @@ img {
 }
 
 label {
-  display: block;
-  font-family: "Figtree", sans-serif;
-  font-optical-sizing: auto;
-  font-weight: 700;
-  font-style: normal;
-  font-size:16px;
   margin-bottom: 0.2rem;
-}
-
-input {
-  width: 100%;
-  height: 40px;
-  border-radius: 10px;
-  background-color: #f1f1f1;
-  color: #1c1c1c;
-  border-style: none;
-  padding: 0 1rem 0 1rem;
-  font-family: "Figtree", sans-serif;
-  font-optical-sizing: auto;
-  font-weight: 400;
-  font-style: normal;
-  font-size: 16px;
-}
-
-#email {
-  width: 65%;
 }
 
 ::placeholder {
@@ -169,19 +131,6 @@ input {
   display: flex;
   justify-content: center;
 
-}
-
-button {
-  font-family: "Figtree", sans-serif;
-  font-optical-sizing: auto;
-  font-weight: 700;
-  font-style: normal;
-  font-size: 16px;
-  height: 60px;
-  border-radius: 10px;
-  border-style: none;
-  color: white;
-  background-color: #9b00ff;
 }
 
 @media (min-width: 769px) {
@@ -239,16 +188,7 @@ button {
   }
   #email {
   width: 60%;
-}
-}
-
-.lien{
-  text-decoration: underline;
-  font-family: "Figtree", sans-serif;
-  font-optical-sizing: auto;
-  font-weight: 400;
-  font-style: normal;
-  font-size: 14px;
+  }
 }
 
 form{

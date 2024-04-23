@@ -89,10 +89,6 @@ const submitCode = async () => {
   transform: translate(-50%, -50%); /* Centrer l'élément verticalement et horizontalement */
 }
 
-label {
-  font-size: 16px;
-}
-
 .containerImg {
   display: flex;
   justify-content: center;
@@ -115,19 +111,7 @@ form {
 }
 
 button {
-  font-family: "Figtree", sans-serif;
-  font-optical-sizing: auto;
-  font-weight: 700;
-  font-style: normal;
-  font-size: 16px;
-  width: 100%;
-  height: 60px;
-  border-radius: 10px;
-  border-style: none;
-  color: white;
-  background-color: #9b00ff;
   margin-top: 2rem;
-  flex: none;
 }
 
 @media (max-width: 768px) {
@@ -172,19 +156,6 @@ button {
 }
 
 input {
-  display: block !important;
-  width: 100% !important;
-  height: 40px;
-  border-radius: 10px;
-  background-color: #f1f1f1;
-  color: #1c1c1c;
-  border-style: none;
-  padding: 0 1rem 0 1rem;
-  font-family: "Figtree", sans-serif;
-  font-optical-sizing: auto;
-  font-weight: 400;
-  font-style: normal;
-  font-size: 16px;
   margin-bottom: 0.5rem;
   text-align: center;
 }
@@ -204,11 +175,5 @@ input {
 .lien{
   display: inline-block;
   margin-top: 140px;
-  text-decoration: underline;
-  font-family: "Figtree", sans-serif;
-  font-optical-sizing: auto;
-  font-weight: 400;
-  font-style: normal;
-  font-size: 14px;
 }
 </style>
