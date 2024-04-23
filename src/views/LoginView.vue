@@ -1,42 +1,42 @@
 <template>
   <div class="login-view">
     <div class="centreVertical">
-    <img
-      alt="Vue logo"
-      class="logo"
-      src="@/assets/unboredAccueil.svg"
-      width="200px"
-    />
-    <form @submit.prevent="submitLoginForm">
-      <label for="email">Adresse HEIG</label>
-      <div class="champs" id="emailInputContainer">
-        <input
-          id="email"
-          type="text"
-          v-model="loginEmail"
-          placeholder="prenom.nom"
-          required
-        />
-        <span class="email-domain">@heig-vd.ch</span>
-      </div>
-      <div class="champs">
-        <label for="password">Mot de Passe</label>
-        <input
-          id="password"
-          type="password"
-          v-model="loginPassword"
-          required
-          minlength="8"
-          placeholder="********"
-        />
-      </div>
-      <div class="boutton">
-        <button type="submit">Me Connecter</button>
-      </div>
-    </form>
-    <p class="lien">J'ai oublié mon mot de passe</p>
+      <img
+        alt="Vue logo"
+        class="logo"
+        src="@/assets/unboredAccueil.svg"
+        width="200px"
+      />
+      <form @submit.prevent="submitLoginForm">
+        <label for="email">Adresse HEIG</label>
+        <div class="champs" id="emailInputContainer">
+          <input
+            id="email"
+            type="text"
+            v-model="loginEmail"
+            placeholder="prenom.nom"
+            required
+          />
+          <span class="email-domain">@heig-vd.ch</span>
+        </div>
+        <div class="champs">
+          <label for="password">Mot de Passe</label>
+          <input
+            id="password"
+            type="password"
+            v-model="loginPassword"
+            required
+            minlength="8"
+            placeholder="********"
+          />
+        </div>
+        <div class="boutton">
+          <button type="submit">Me Connecter</button>
+        </div>
+      </form>
+      <p class="lien">J'ai oublié mon mot de passe</p>
+    </div>
   </div>
-</div>
 </template>
 
 <script setup>
@@ -64,8 +64,9 @@ const submitLoginForm = async () => {
     const data = await response.json();
     if (response.ok) {
       localStorage.setItem("token", data.token);
+      localStorage.setItem("user", JSON.stringify(data.user));
       // Rediriger puis afficher le toast de succès
-      router.push({ name: "boredRoom" }).then(() => {
+      router.push({ name: "boredroom" }).then(() => {
         toast.success("Connexion réussie!", {
           autoClose: 2000,
         });
@@ -113,7 +114,7 @@ img {
   width: 73%;
   height: 40px;
   border-radius: 10px;
-  background-color: #F1F1F1;
+  background-color: #f1f1f1;
   border-style: none;
   padding: 0 1rem 0 1rem;
   font-family: "Figtree", sans-serif;
@@ -176,7 +177,7 @@ button {
   background-color: #9b00ff;
 }
 
-.lien{
+.lien {
   text-decoration: underline;
   font-family: "Figtree", sans-serif;
   font-optical-sizing: auto;
@@ -184,7 +185,7 @@ button {
   font-style: normal;
 }
 
-form{
+form {
   width: 100%;
   margin: 0 1rem 0 1rem;
   max-width: 400px;
