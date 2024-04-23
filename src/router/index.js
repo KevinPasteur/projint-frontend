@@ -45,7 +45,7 @@ const router = createRouter({
 
         try {
           // The token is automatically included by the Axios interceptor
-          await API.post("/validate-tokenC");
+          await API.post("/validate-token");
           next(); // If the token is valid, continue
         } catch (error) {
           toast.error("Accès refusé. Veuillez trouver un code valide.");

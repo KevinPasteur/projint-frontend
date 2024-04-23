@@ -12,8 +12,7 @@ const user = ref({
   email: "",
   motDePasse: "",
   anonyme: false,
-  idCentreInterets: [],
-  idEmojis: [],
+  tokenC: "",
 });
 const router = useRouter();
 const showErrors = ref(false);
@@ -35,6 +34,7 @@ const formIsValid = computed(
 const submitForm = async () => {
   showErrors.value = true; // Show errors if there are any on attempting to submit
   user.value.email = userEmail.value;
+  user.value.tokenC = localStorage.getItem("tokenC");
   if (formIsValid.value) {
     try {
       const response = await API.post("/create-user", user.value);
