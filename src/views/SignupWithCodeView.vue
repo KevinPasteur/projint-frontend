@@ -6,6 +6,7 @@
         alt="Vue logo"
         class="logo"
         src="@/assets/unboredAccueil.svg"
+        width="200px"
       />
       </div>
       <form @submit.prevent="submitCode">
@@ -20,6 +21,11 @@
           />
         </div>
         <button type="submit" class="center-button">Rejoindre unbored</button>
+        <img
+      alt="Vue logo"
+      class="happy"
+      src="@/assets/stickerHappy.svg"
+    />
       </form>
       <div class="containerLien">
         <p class="lien">Je suis déjà membre</p>
@@ -88,9 +94,13 @@ const submitCode = async () => {
   justify-content: center;
 }
 
-img {
+.logo {
   margin-bottom: 3rem;
-  width: 200px;
+}
+
+.happy {
+  position: absolute;
+  top: 300px;
 }
 
 form {
@@ -119,11 +129,20 @@ button {
   button {
     min-width: 400px;
   }
+  .happy {
+    top: 290px;
+    width: 120px;
+    left: 30px;
+  }
 }
 
 @media (max-width: 425px) {
   button {
     min-width: 360px;
+  }
+  .happy {
+    left: 35px;
+    width: 100px;
   }
 }
 
@@ -131,11 +150,19 @@ button {
   button {
     min-width: 310px;
   }
+  .happy {
+    left: 20px;
+    width: 90px;
+  }
 }
 
 @media (max-width: 320px) {
   button {
     min-width: 255px;
+  }
+  .happy {
+    left: -10px;
+    width: 86px;
   }
 }
 
