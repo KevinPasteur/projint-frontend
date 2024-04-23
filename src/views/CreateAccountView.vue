@@ -36,33 +36,15 @@ const submitForm = async () => {
   user.value.email = userEmail.value;
   user.value.tokenC = localStorage.getItem("tokenC");
 
-  const userToStore = {
-    userId: "",
-    username: "",
-    email: "",
-  };
-
   if (formIsValid.value) {
     try {
       const response = await API.post("/create-user", user.value);
       const data = response.data;
       if (response.status === 201) {
         // Vérifiez si le statut est 201
-        console.log("Utilisateur créé avec succès", data);
 
         localStorage.setItem("token", data.token);
-
-        userToStore.userId = data.userId;
-        userToStore.email = user.value.email;
-
-        if (user.value.anonyme) {
-          userToStore.username = user.value.pseudo;
-        } else {
-          userToStore.username = user.value.prenom + " " + user.value.nom;
-          localStorage.setItem("username", username);
-        }
-
-        localStorage.setItem("user", JSON.stringify(userToStore));
+        localStorage.setItem("user", JSON.stringify(data.userToReturn));
 
         showErrors.value = false;
 
