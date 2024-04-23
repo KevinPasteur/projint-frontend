@@ -1,19 +1,30 @@
 <template>
   <div class="signup-view">
-    <h1>Inscription avec un Code</h1>
-    <form @submit.prevent="submitCode">
-      <div>
-        <label for="code">Code d'inscription:</label>
-        <input
-          id="code"
-          type="text"
-          v-model="signupCode"
-          required
-          placeholder="000-000-000-000"
-        />
+    <div class="contientTout">
+      <div class="containerImg">
+      <img
+        alt="Vue logo"
+        class="logo"
+        src="@/assets/unboredAccueil.svg"
+      />
       </div>
-      <button type="submit">Vérifier et s'inscrire</button>
-    </form>
+      <form @submit.prevent="submitCode">
+        <div class="containerCode">
+          <label for="code">Entre ton code</label>
+          <input
+            id="code"
+            type="text"
+            v-model="signupCode"
+            required
+            placeholder="000-000-000-000"
+          />
+        </div>
+        <button type="submit" class="center-button">Rejoindre unbored</button>
+      </form>
+      <div class="containerLien">
+        <p class="lien">Je suis déjà membre</p>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -60,4 +71,110 @@ const submitCode = async () => {
 
 <style scoped>
 /* Votre CSS ici */
+.signup-view {
+  position: relative; /* Position relative pour positionner les éléments enfants */
+  height: 84vh;
+}
+
+.contientTout {
+  position: absolute;
+  top: 50%; /* Positionner le haut de l'élément à 50% du contenant parent */
+  left: 50%; /* Positionner la gauche de l'élément à 50% du contenant parent */
+  transform: translate(-50%, -50%); /* Centrer l'élément verticalement et horizontalement */
+}
+
+.containerImg {
+  display: flex;
+  justify-content: center;
+}
+
+img {
+  margin-bottom: 3rem;
+  width: 200px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  justify-content: center;
+}
+
+button {
+  font-family: "Figtree", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 700;
+  font-style: normal;
+  width: 100%;
+  height: 60px;
+  border-radius: 10px;
+  border-style: none;
+  color: white;
+  background-color: #9b00ff;
+  margin-top: 2rem;
+  flex: none;
+}
+
+@media (max-width: 768px) {
+  button {
+    min-width: 400px;
+  }
+}
+
+@media (max-width: 425px) {
+  button {
+    min-width: 360px;
+  }
+}
+
+@media (max-width: 375px) {
+  button {
+    min-width: 310px;
+  }
+}
+
+@media (max-width: 320px) {
+  button {
+    min-width: 255px;
+  }
+}
+
+input {
+  display: block !important;
+  width: 100% !important;
+  height: 40px;
+  border-radius: 10px;
+  background-color: #f1f1f1;
+  color: #1c1c1c;
+  border-style: none;
+  padding: 0 1rem 0 1rem;
+  font-family: "Figtree", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  margin-bottom: 0.5rem;
+  text-align: center;
+}
+
+.containerCode {
+  /* centre ce qu'il y a dedans */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.containerLien {
+  display: flex;
+  justify-content: center;
+}
+
+.lien{
+  display: inline-block;
+  margin-top: 140px;
+  text-decoration: underline;
+  font-family: "Figtree", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+}
 </style>
