@@ -35,6 +35,13 @@ const submitForm = async () => {
   showErrors.value = true; // Show errors if there are any on attempting to submit
   user.value.email = userEmail.value;
   user.value.tokenC = localStorage.getItem("tokenC");
+
+  const userToStore = {
+    userId: "",
+    username: "",
+    email: "",
+  };
+
   if (formIsValid.value) {
     try {
       const response = await API.post("/create-user", user.value);
@@ -42,13 +49,27 @@ const submitForm = async () => {
       if (response.status === 201) {
         // Vérifiez si le statut est 201
         console.log("Utilisateur créé avec succès", data);
+
         localStorage.setItem("token", data.token);
-        localStorage.setItem("userID", data.userId);
+
+        userToStore.userId = data.userId;
+        userToStore.email = user.value.email;
+
+        if (user.value.anonyme) {
+          userToStore.username = user.value.pseudo;
+        } else {
+          userToStore.username = user.value.prenom + " " + user.value.nom;
+          localStorage.setItem("username", username);
+        }
+
+        localStorage.setItem("user", JSON.stringify(userToStore));
+
         showErrors.value = false;
+
         //delete the tokenC from the local storage
         localStorage.removeItem("tokenC");
         toast.success("Compte créé avec succès!");
-        router.push({ name: "boredRoom" });
+        router.push({ name: "boredroom" });
       } else {
         // Ceci n'est probablement pas nécessaire car les réponses autre que 2xx lanceront une exception
         toast.error(data.message);
