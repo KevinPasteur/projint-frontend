@@ -23,9 +23,6 @@ const router = createRouter({
     {
       path: "/about",
       name: "about",
-      // route level code-splitting
-      // this generates a separate chunk (About.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
       component: () => import("../views/AboutView.vue"),
     },
     {
@@ -42,18 +39,21 @@ const router = createRouter({
       path: "/createAccount",
       name: "createAccount",
       component: CreateAccountView,
-      beforeEnter: (to, from, next) => {
-        const validCode = localStorage.getItem("validCode");
-        if (validCode) {
-          next(); // Continuer vers la page de création de compte
-        } else {
-          toast.error(
-            "Vous n'avez pas accès à cette page sans un code valide.",
-            {
-              autoClose: 5000,
-            }
-          );
-          next(false); // Bloquer la navigation si aucun code valide n'est trouvé
+      beforeEnter: async (to, from, next) => {
+        const tokenC = localStorage.getItem("tokenC");
+        if (!tokenC) {
+          toast.error("Accès refusé. Veuillez obtenir un jeton valide.");
+          next({ name: "signupWithCode" }); // Redirect to login if no token found
+          return; // Stop execution if there's no token
+        }
+
+        try {
+          // The token is automatically included by the Axios interceptor
+          await API.post("/validate-token");
+          next(); // If the token is valid, continue
+        } catch (error) {
+          toast.error("Accès refusé. Veuillez trouver un code valide.");
+          next({ name: "login" }); // Redirect to login if token validation fails
         }
       },
     },
