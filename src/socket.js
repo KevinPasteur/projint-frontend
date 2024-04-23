@@ -3,13 +3,11 @@ import { io } from "socket.io-client";
 
 export const state = reactive({
   connected: false,
-  fooEvents: [],
-  barEvents: [],
 });
 
 // "undefined" means the URL will be computed from the `window.location` object
 const URL =
-  process.env.NODE_ENV === "production" ? undefined : "http://localhost:5173";
+  process.env.NODE_ENV === "production" ? undefined : "http://localhost:5000";
 
 export const socket = io(URL);
 
@@ -21,10 +19,7 @@ socket.on("disconnect", () => {
   state.connected = false;
 });
 
-socket.on("foo", (...args) => {
-  state.fooEvents.push(args);
-});
-
-socket.on("bar", (...args) => {
-  state.barEvents.push(args);
+socket.on("clientError", (err) => {
+  console.error("Client error:", err);
+  socket.destroy();
 });
