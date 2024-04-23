@@ -34,14 +34,13 @@ const submitCode = async () => {
     });
     const data = await response.json();
     if (response.ok) {
-      localStorage.setItem("validCode", "true");
+      localStorage.setItem("tokenC", data.tokenC);
       toast.success("Code valide! Redirection vers la création de compte.", {
         autoClose: 2000,
       });
       setTimeout(() => {
         router.push({
           name: "createAccount",
-          query: { code: signupCode.value },
         });
       }, 2000);
     } else {
