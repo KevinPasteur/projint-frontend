@@ -15,7 +15,7 @@
           class="sender"
           :class="{ 'my-message': message.message.senderId === userId }"
         >
-          {{ username }}</span
+          {{ message.message.username }}</span
         >: {{ message.message.content }}
       </div>
     </div>
@@ -52,13 +52,21 @@ export default {
       this.userId = JSON.parse(localStorage.getItem("user")).userId;
       this.username = JSON.parse(localStorage.getItem("user")).username;
 
+      const objectMap = (obj, fn) =>
+        Object.fromEntries(
+          Object.entries(obj).map(([k, v], i) => [k, fn(v, k, i)])
+        );
+
       axios
         .get("http://localhost:5000/api/rooms/" + roomId)
         .then((response) => {
           if (!response.data.roomId) this.$router.push("/boredroom");
 
+          objectMap(response.data.messages, (message) =>
+            this.messages.push(message)
+          );
+
           this.roomId = response.data.roomId;
-          this.messages = response.data.messages;
           this.roomName = response.data.name;
           this.roomDescription = response.data.description;
         })
@@ -79,6 +87,7 @@ export default {
         socket.emit("sendMessage", {
           roomId: this.roomId,
           message: {
+            username: this.username,
             senderId: this.userId,
             content: this.messageText,
             timestamp: Date.now(),
