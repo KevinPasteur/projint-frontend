@@ -6,20 +6,22 @@
       class="roomContainer"
       style="width: 100%"
     >
-      <h1>Bored Room</h1>
-      <ul class="list-group">
-        <li v-for="room in chatRooms" :key="room.id" class="list-group-item">
+      <h1 class="title">Bored Room</h1>
+      <div class="row">
+        <div v-for="room in chatRooms" :key="room.id" class="col-12">
           <router-link :to="{ name: 'chatroom', params: { roomId: room.id } }">
-            <!-- Structure de la card (similaire aux exemples précédents) -->
-            <div class="card" style="width: 100% !important">
-              <div class="card-body">
-                <h5 class="card-title">{{ room.name }}</h5>
-                <div class="d-flex justify-content-between align-items-center">
-                  <span class="badge bg-primary">
-                    {{ room.connectedUsers }} connectés
-                  </span>
+            <div class="shadow card p-3 mb-2">
+              <div class="d-flex justify-content-between">
+                <div class="d-flex flex-row align-items-center">
+                  <div class="ms-2 c-details">
+                    <h6 class="mb-0">{{ room.name }}</h6>
+                  </div>
                 </div>
-                <br />
+                <div class="badge">
+                  <span>{{ room.connectedUsers ?? 0 }}</span>
+                </div>
+              </div>
+              <div class="mt-3">
                 <div class="container-bar">
                   <div
                     class="timer-bar"
@@ -30,8 +32,9 @@
               </div>
             </div>
           </router-link>
-        </li>
-      </ul>
+        </div>
+      </div>
+
       <div class="float">
         <router-link :to="{ name: 'createroom' }">
           <button>Créer ma Room</button>
@@ -194,14 +197,12 @@ body.empty-chat-rooms {
 .page-wrapper {
   display: flex;
   flex-direction: column; /* Align items vertically */
-  justify-content: center; /* Center vertically */
   align-items: center; /* Center horizontally */
   min-height: 100vh; /* Ensure it takes up full viewport height */
 }
 
 .title {
-  font-size: 2.2rem;
-  font-weight: bold;
+  font-size: 1.5rem !important;
 }
 
 .content {
@@ -300,5 +301,61 @@ h5 {
   left: 50%;
   transform: translate(-50%, -50%);
   width: 80%;
+}
+
+.card {
+  background-color: #fff;
+  border-radius: 10px;
+  border: none;
+  position: relative;
+  margin-bottom: 30px;
+  margin-top: 10px;
+  width: 100%;
+}
+
+.c-details span {
+  font-weight: 300;
+  font-size: 13px;
+}
+
+.icon {
+  width: 50px;
+  height: 50px;
+  background-color: #eee;
+  border-radius: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 39px;
+}
+
+.badge span {
+  background-color: #9b00ff;
+  width: 30px;
+  height: 30px;
+  border-radius: 30px;
+  display: flex;
+  color: white;
+  font-weight: bold;
+  justify-content: center;
+  align-items: center;
+}
+
+.progress {
+  height: 10px;
+  border-radius: 10px;
+}
+
+.progress div {
+  background-color: red;
+}
+
+.text1 {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.text2 {
+  color: #a5aec0;
 }
 </style>
