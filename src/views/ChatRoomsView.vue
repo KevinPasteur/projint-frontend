@@ -211,6 +211,7 @@ body.empty-chat-rooms {
 }
 
 .title {
+  text-align: center;
   font-size: 1.5rem !important;
 }
 
@@ -309,7 +310,6 @@ h5 {
   top: 90%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 80%;
 }
 
 .card {

@@ -1,27 +1,37 @@
 <template>
   <div class="create-room-page">
     <div class="containAll">
-    <router-link to="/boredroom" class="router-link retour"> < </router-link>
-    <div class="header">
-      <h1 class="centered">Crée ta Room</h1>
+      <router-link to="/boredroom" class="router-link retour"> < </router-link>
+      <div class="header">
+        <h1 class="centered">Crée ta Room</h1>
+      </div>
+      <form @submit.prevent="createRoom">
+        <div class="form-group">
+          <label for="roomName">Nom</label>
+          <input
+            type="text"
+            id="roomName"
+            placeholder="Nom"
+            v-model="roomName"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <label for="roomDescription">Description</label>
+          <textarea
+            id="roomDescription"
+            placeholder="Description"
+            v-model="roomDescription"
+          ></textarea>
+        </div>
+        <div class="form-group">
+          <label for="endDate">Date de fin</label>
+          <VueDatePicker class="date" v-model="date"></VueDatePicker>
+        </div>
+        <br />
+        <button type="submit">Créer la room</button>
+      </form>
     </div>
-    <form @submit.prevent="createRoom">
-      <div class="form-group">
-        <label for="roomName">Nom</label>
-        <input type="text" id="roomName" placeholder="Nom" v-model="roomName" required />
-      </div>
-      <div class="form-group">
-        <label for="roomDescription">Description</label>
-        <textarea id="roomDescription" placeholder="Description" v-model="roomDescription"></textarea>
-      </div>
-      <div class="form-group">
-        <label for="endDate">Date de fin</label>
-        <VueDatePicker class="date" v-model="date"></VueDatePicker>
-      </div>
-      <br />
-      <button type="submit">Créer la room</button>
-    </form>
-  </div>
   </div>
 </template>
 
@@ -75,7 +85,7 @@ export default {
   align-items: center;
 }
 
-.containAll{
+.containAll {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -107,7 +117,6 @@ label {
 
 h1 {
   margin-bottom: 1.5rem !important;
-  width: 230px;
   text-align: center;
 }
 
@@ -143,62 +152,66 @@ a {
 }
 
 @media (min-width: 769px) {
-  button, .header{
+  button,
+  .header {
     min-width: 400px;
     max-width: 400px;
   }
 }
 
 @media (max-width: 768px) {
-  button, .header {
+  button,
+  .header {
     min-width: 400px;
     max-width: 400px;
   }
   .retour {
-  /* descends de quelques pixels */
-  position: absolute;
-  top: 17px;
-  left: 180px;
-}
+    /* descends de quelques pixels */
+    position: absolute;
+    top: 17px;
+    left: 180px;
+  }
 }
 
 @media (max-width: 425px) {
-  button, .header {
+  button,
+  .header {
     min-width: 360px;
     max-width: 360px;
   }
   .retour {
-  /* descends de quelques pixels */
-  position: absolute;
-  top: 17px;
-  left: 32px;
-}
+    /* descends de quelques pixels */
+    position: absolute;
+    top: 17px;
+    left: 32px;
+  }
 }
 
 @media (max-width: 375px) {
-  button, .header{
+  button,
+  .header {
     min-width: 310px;
     max-width: 310px;
   }
   .retour {
-  /* descends de quelques pixels */
-  position: absolute;
-  top: 17px;
-  left: 32px;
-}
+    /* descends de quelques pixels */
+    position: absolute;
+    top: 17px;
+    left: 32px;
+  }
 }
 
 @media (max-width: 320px) {
-  button, .header {
+  button,
+  .header {
     min-width: 255px;
     max-width: 255px;
   }
   .retour {
-  /* descends de quelques pixels */
-  position: absolute;
-  top: 17px;
-  left: 32px;
+    /* descends de quelques pixels */
+    position: absolute;
+    top: 17px;
+    left: 32px;
+  }
 }
-}
-
 </style>
