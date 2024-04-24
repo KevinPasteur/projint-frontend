@@ -120,9 +120,9 @@ button {
     min-width: 400px;
   }
   .happy {
-    top: 290px;
-    width: 120px;
-    left: 30px;
+    top: 300px;
+    width: 140px;
+    left: -5px;
   }
 }
 
@@ -131,8 +131,9 @@ button {
     min-width: 360px;
   }
   .happy {
-    left: 35px;
-    width: 100px;
+    top: 300px;
+    left: 5px;
+    width: 110px;
   }
 }
 
@@ -141,7 +142,8 @@ button {
     min-width: 310px;
   }
   .happy {
-    left: 20px;
+    top: 300px;
+    left: 0px;
     width: 90px;
   }
 }
@@ -151,8 +153,9 @@ button {
     min-width: 255px;
   }
   .happy {
-    left: -10px;
-    width: 86px;
+    top: 310px;
+    left: -5px;
+    width: 70px;
   }
 }
 
@@ -168,13 +171,21 @@ input {
   align-items: center;
 }
 
-.containerLien {
+a {
   display: flex;
+  align-items: center;
   justify-content: center;
 }
 
 .lien {
+  text-decoration: underline !important;
+  font-family: "Figtree", sans-serif !important;
+  font-optical-sizing: auto !important;
+  font-weight: 400 !important;
+  font-style: normal !important;
+  font-size: 14px !important;
   display: inline-block;
   margin-top: 140px;
+  color: #1C1C1C;
 }
 </style>
