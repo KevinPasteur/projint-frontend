@@ -154,7 +154,6 @@ a {
 @media (min-width: 769px) {
   button,
   .header {
-    min-width: 400px;
     max-width: 400px;
   }
 }
@@ -162,7 +161,6 @@ a {
 @media (max-width: 768px) {
   button,
   .header {
-    min-width: 400px;
     max-width: 400px;
   }
   .retour {
@@ -176,7 +174,6 @@ a {
 @media (max-width: 425px) {
   button,
   .header {
-    min-width: 360px;
     max-width: 360px;
   }
   .retour {
@@ -190,7 +187,6 @@ a {
 @media (max-width: 375px) {
   button,
   .header {
-    min-width: 310px;
     max-width: 310px;
   }
   .retour {
@@ -204,7 +200,6 @@ a {
 @media (max-width: 320px) {
   button,
   .header {
-    min-width: 255px;
     max-width: 255px;
   }
   .retour {

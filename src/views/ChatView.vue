@@ -1,7 +1,9 @@
 <template>
   <div class="chat-room">
-    <button @click="$router.push('/boredroom')">Back to Boredroom</button>
-    <h2>Chat Room: {{ roomName }}</h2>
+    <router-link to="/boredroom" class="router-link retour"> < </router-link>
+    <div class="centreh2">
+      <h2>{{ roomName }}</h2>
+    </div>
     <div class="messages">
       <div v-for="message in messages" :key="message.id">
         {{
@@ -19,13 +21,15 @@
         >: {{ message.message.content }}
       </div>
     </div>
-    <div class="input-area">
+    <div class="input-area float">
       <input
         v-model="messageText"
         type="text"
         placeholder="Entrez votre message..."
       />
-      <button @click="sendMessage">Envoyer</button>
+      <button class="icon-button" @click="sendMessage">
+      <img src="../assets/send.svg" alt="envoyer message">
+      </button>
     </div>
   </div>
 </template>
@@ -120,10 +124,57 @@ export default {
   /* Styles pour le nom de l'expéditeur */
 }
 .input-area {
-  /* Styles pour la zone de saisie */
+  /* Styles pour la zone de saisie des messages */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  width: 80%;
+}
+
+.centreh2 {
+  text-align: center;
+}
+
+#text {
+  color: white;
+  padding: 0.5rem 1rem 1rem 0.5rem;
+  font-family: "Figtree", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 14px;
+}
+
+.float {
+  position: fixed;
+  top: 95%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+h2 {
+  font-family: "Figtree", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 700;
+  font-style: normal;
+  font-size: 16px;
+
 }
 
 .my-message {
   color: green;
+}
+
+.icon-button {
+  background-color: transparent;
+  border: none;
+  width:25px;
+  height:25px;
+  margin-left: 1rem;
+}
+
+.icon-button:focus {
+  outline: none; /* Supprime la bordure de focus par défaut */
 }
 </style>
