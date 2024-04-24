@@ -9,7 +9,11 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@popperjs/core": "^2.11.8",
+    "@vuepic/vue-datepicker": "^8.5.0",
     "axios": "^1.6.8",
+    "bootstrap": "^5.3.3",
+    "jquery": "^3.7.1",
     "jsonwebtoken": "^9.0.2",
     "socket.io-client": "^4.7.5",
     "util": "^0.12.5",

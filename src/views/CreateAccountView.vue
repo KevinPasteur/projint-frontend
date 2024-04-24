@@ -3,6 +3,7 @@ import { ref, computed } from "vue";
 import { useRouter } from "vue-router";
 import { toast } from "vue3-toastify";
 import "vue3-toastify/dist/index.css";
+import API from "../axiosConfig";
 
 const user = ref({
   pseudo: "",
@@ -11,8 +12,7 @@ const user = ref({
   email: "",
   motDePasse: "",
   anonyme: false,
-  idCentreInterets: [],
-  idEmojis: [],
+  tokenC: "",
 });
 const router = useRouter();
 const showErrors = ref(false);
@@ -34,24 +34,33 @@ const formIsValid = computed(
 const submitForm = async () => {
   showErrors.value = true; // Show errors if there are any on attempting to submit
   user.value.email = userEmail.value;
+  user.value.tokenC = localStorage.getItem("tokenC");
+
   if (formIsValid.value) {
     try {
       const response = await API.post("/create-user", user.value);
       const data = response.data;
-      if (response.status === 200) {
-        console.log("Utilisateur créé avec succès", data);
+      if (response.status === 201) {
+        // Vérifiez si le statut est 201
+
         localStorage.setItem("token", data.token);
-        localStorage.setItem("userID", data.userId);
+        localStorage.setItem("user", JSON.stringify(data.userToReturn));
+
         showErrors.value = false;
+
+        //delete the tokenC from the local storage
+        localStorage.removeItem("tokenC");
         toast.success("Compte créé avec succès!");
-        router.push({ name: "boredRoom" });
+        router.push({ name: "boredroom" });
       } else {
+        // Ceci n'est probablement pas nécessaire car les réponses autre que 2xx lanceront une exception
         toast.error(data.message);
         throw new Error(data.message);
       }
     } catch (error) {
-      console.error("Erreur de création d'utilisateur", error);
-      toast.error("Erreur lors de la création du compte : " + error.message);
+      // Ici, affichez l'erreur retournée par le serveur, si disponible
+      const errorMessage = error.response?.data?.message || error.message;
+      toast.error("Erreur lors de la création du compte : " + errorMessage);
     }
   }
 };
@@ -65,11 +74,23 @@ const submitForm = async () => {
         <div class="prenomNom container">
           <div class="prenom">
             <label for="prenom">Ton prénom</label>
-            <input type="text" id="prenom" v-model="user.prenom" placeholder="Prénom" required />
+            <input
+              type="text"
+              id="prenom"
+              v-model="user.prenom"
+              placeholder="Prénom"
+              required
+            />
           </div>
           <div class="nom">
             <label for="nom">Ton nom</label>
-            <input type="text" id="nom" v-model="user.nom" placeholder="Nom" required />
+            <input
+              type="text"
+              id="nom"
+              v-model="user.nom"
+              placeholder="Nom"
+              required
+            />
           </div>
         </div>
         <div class="containerPseudo container">
@@ -84,21 +105,20 @@ const submitForm = async () => {
           />
         </div>
         <div class="emailContainer container">
-        <label for="email">Adresse HEIG</label>
-        <div class="email-input-container">
-          <input
-            id="email"
-            type="text"
-            v-model="user.email"
-            placeholder="prénom.nom"
-            required
-            @blur="user.email = user.email.toLowerCase()"
-          />
-          <span class="email-domain">@heig-vd.ch</span>
-        </div>
-        <div v-if="!isValidEmailPrefix && showErrors">Email non valide</div>
-        <div class="containerPassword container">
-        </div>
+          <label for="email">Adresse HEIG</label>
+          <div class="email-input-container">
+            <input
+              id="email"
+              type="text"
+              v-model="user.email"
+              placeholder="prénom.nom"
+              required
+              @blur="user.email = user.email.toLowerCase()"
+            />
+            <span class="email-domain">@heig-vd.ch</span>
+          </div>
+          <div v-if="!isValidEmailPrefix && showErrors">Email non valide</div>
+          <div class="containerPassword container"></div>
           <label for="motDePasse">Mot de passe</label>
           <input
             id="motDePasse"
@@ -116,7 +136,10 @@ const submitForm = async () => {
         </div>
         <div class="anonymeContainer container">
           <input type="checkbox" v-model="user.anonyme" id="anonyme" />
-          <label for="anonyme" class="labelAnonyme">Je souhaite afficher mon pseudo pour garder mon anonymat sur l'application</label>
+          <label for="anonyme" class="labelAnonyme"
+            >Je souhaite afficher mon pseudo pour garder mon anonymat sur
+            l'application</label
+          >
         </div>
         <button type="submit">Valider</button>
       </form>
@@ -137,7 +160,7 @@ const submitForm = async () => {
   height: 84vh;
 }
 
-.containAll{
+.containAll {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -148,7 +171,7 @@ label {
   margin-bottom: 0.2rem;
 }
 
-input{
+input {
   width: 100%;
 }
 
@@ -156,16 +179,16 @@ input{
   height: 20px;
 }
 
-.prenomNom{
+.prenomNom {
   display: flex;
   justify-content: space-between;
 }
 
-.nom{
+.nom {
   width: 48%;
 }
 
-.prenom{
+.prenom {
   width: 48%;
 }
 
@@ -199,15 +222,39 @@ input{
 }
 }
 
-p{
+@media (max-width: 768px) {
+  #email {
+  width: 75%;
+  }
+}
+
+@media (max-width: 425px) {
+  #email {
+  width: 72%;
+}
+}
+
+@media (max-width: 375px) {
+  #email {
+  width: 67%;
+}
+}
+
+@media (max-width: 320px) {
+  #email {
+  width: 60%;
+}
+}
+
+p {
   font-size: 12px;
 }
 
-.container{
+.container {
   margin-bottom: 1rem;
 }
 
-form{
+form {
   max-width: 400px;
 }
 
@@ -215,65 +262,67 @@ form{
 
 /* Conteneur pour l'alignement */
 .anonymeContainer {
-    display: flex;
-    align-items: center;
-    margin-bottom: 2rem;
-  }
+  display: flex;
+  align-items: center;
+  margin-bottom: 2rem;
+}
 
-  /* Masquer la case à cocher par défaut */
-  .anonymeContainer input[type="checkbox"] {
-    display: none;
-  }
+/* Masquer la case à cocher par défaut */
+.anonymeContainer input[type="checkbox"] {
+  display: none;
+}
 
-  /* Style pour le label et le faux checkbox */
-  .anonymeContainer label {
-    position: relative;
+/* Style pour le label et le faux checkbox */
+.anonymeContainer label {
+  position: relative;
   padding-left: 35px; /* Espace pour le faux input */
   cursor: pointer;
   display: flex;
   align-items: center; /* Alignement vertical du texte et du faux input */
   height: 30px; /* Hauteur fixe pour mieux contrôler l'alignement */
-  }
+}
 
-  /* Création du cercle non coché */
-  .anonymeContainer label::before {
-    content: '';
-    position: absolute;
-    left: 0;
-    top: 50%;
-    transform: translateY(-50%); /* Centrage vertical parfait du cercle */
-    width: 20px;
-    height: 20px;
-    border: 2px solid #BCBCBC;
-    border-radius: 50%;
-    background-color: #F1F1F1;
-  }
+/* Création du cercle non coché */
+.anonymeContainer label::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%); /* Centrage vertical parfait du cercle */
+  width: 20px;
+  height: 20px;
+  border: 2px solid #bcbcbc;
+  border-radius: 50%;
+  background-color: #f1f1f1;
+}
 
-  /* Quand la case est cochée, ajouter un cercle intérieur */
-  .anonymeContainer input[type="checkbox"]:checked + label::before {
-    border-color: #BCBCBC;
-    background: #F1F1F1;
-  }
+/* Quand la case est cochée, ajouter un cercle intérieur */
+.anonymeContainer input[type="checkbox"]:checked + label::before {
+  border-color: #bcbcbc;
+  background: #f1f1f1;
+}
 
-  /* Ajout d'un indicateur pour la case cochée */
-  .anonymeContainer input[type="checkbox"]:checked + label::after {
-    content: '';
-    position: absolute;
-    left: 4px;
-    top: calc(50% + 0px); /* Ajustement en fonction de la taille de l'indicateur */
-    transform: translateY(-50%); /* Centrage vertical */
-    width: 12px;
-    height: 12px;
-    border-radius: 50%;
-    background: #9B00FF;
-  }
+/* Ajout d'un indicateur pour la case cochée */
+.anonymeContainer input[type="checkbox"]:checked + label::after {
+  content: "";
+  position: absolute;
+  left: 4px;
+  top: calc(
+    50% + 0px
+  ); /* Ajustement en fonction de la taille de l'indicateur */
+  transform: translateY(-50%); /* Centrage vertical */
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #9b00ff;
+}
 
-  .labelAnonyme {
-    font-family: "Figtree", sans-serif;
-    font-optical-sizing: auto;
-    font-weight: 400;
-    font-style: normal;
-    font-size: 12px;
-    margin-left: 1rem;
-  }
+.labelAnonyme {
+  font-family: "Figtree", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 12px;
+  margin-left: 1rem;
+}
 </style>

@@ -4,6 +4,10 @@ import CreateAccountView from "../views/CreateAccountView.vue";
 import BoredRoomView from "../views/BoredRoomView.vue";
 import LoginView from "../views/LoginView.vue";
 import SignupWithCodeView from "../views/SignupWithCodeView.vue";
+import ChatRoomsView from "../views/ChatRoomsView.vue";
+import ChatView from "@/views/ChatView.vue";
+import CreateRoomView from "@/views/CreateRoomView.vue";
+
 import { toast } from "vue3-toastify";
 import "vue3-toastify/dist/index.css";
 import API from "../axiosConfig";
@@ -19,9 +23,6 @@ const router = createRouter({
     {
       path: "/about",
       name: "about",
-      // route level code-splitting
-      // this generates a separate chunk (About.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
       component: () => import("../views/AboutView.vue"),
     },
     {
@@ -38,18 +39,21 @@ const router = createRouter({
       path: "/createAccount",
       name: "createAccount",
       component: CreateAccountView,
-      beforeEnter: (to, from, next) => {
-        const validCode = localStorage.getItem("validCode");
-        if (validCode) {
-          next(); // Continuer vers la page de création de compte
-        } else {
-          toast.error(
-            "Vous n'avez pas accès à cette page sans un code valide.",
-            {
-              autoClose: 5000,
-            }
-          );
-          next(false); // Bloquer la navigation si aucun code valide n'est trouvé
+      beforeEnter: async (to, from, next) => {
+        const tokenC = localStorage.getItem("tokenC");
+        if (!tokenC) {
+          toast.error("Accès refusé. Veuillez obtenir un jeton valide.");
+          next({ name: "signupWithCode" }); // Redirect to login if no token found
+          return; // Stop execution if there's no token
+        }
+
+        try {
+          // The token is automatically included by the Axios interceptor
+          await API.post("/validate-token");
+          next(); // If the token is valid, continue
+        } catch (error) {
+          toast.error("Accès refusé. Veuillez trouver un code valide.");
+          next({ name: "login" }); // Redirect to login if token validation fails
         }
       },
     },
@@ -58,10 +62,76 @@ const router = createRouter({
       name: "login",
       component: LoginView,
     },
+    {
+      path: "/boredroom",
+      name: "boredroom",
+      component: ChatRoomsView,
+      beforeEnter: async (to, from, next) => {
+        const tokenC = localStorage.getItem("token");
+        if (!tokenC) {
+          toast.error("Accès refusé. Veuillez obtenir un jeton valide.");
+          next({ name: "signupWithCode" }); // Redirect to login if no token found
+          return; // Stop execution if there's no token
+        }
+
+        try {
+          // The token is automatically included by the Axios interceptor
+          await API.post("/validate-token");
+          next(); // If the token is valid, continue
+        } catch (error) {
+          toast.error("Accès refusé. Veuillez trouver un code valide.");
+          next({ name: "login" }); // Redirect to login if token validation fails
+        }
+      },
+    },
+    {
+      path: "/boredroom/:roomId",
+      name: "chatroom",
+      component: ChatView,
+      beforeEnter: async (to, from, next) => {
+        const tokenC = localStorage.getItem("token");
+        if (!tokenC) {
+          toast.error("Accès refusé. Veuillez obtenir un jeton valide.");
+          next({ name: "signupWithCode" }); // Redirect to login if no token found
+          return; // Stop execution if there's no token
+        }
+
+        try {
+          // The token is automatically included by the Axios interceptor
+          await API.post("/validate-token");
+          next(); // If the token is valid, continue
+        } catch (error) {
+          toast.error("Accès refusé. Veuillez trouver un code valide.");
+          next({ name: "login" }); // Redirect to login if token validation fails
+        }
+      },
+    },
+    {
+      path: "/createroom",
+      name: "createroom",
+      component: CreateRoomView,
+      beforeEnter: async (to, from, next) => {
+        const tokenC = localStorage.getItem("token");
+        if (!tokenC) {
+          toast.error("Accès refusé. Veuillez obtenir un jeton valide.");
+          next({ name: "signupWithCode" }); // Redirect to login if no token found
+          return; // Stop execution if there's no token
+        }
+
+        try {
+          // The token is automatically included by the Axios interceptor
+          await API.post("/validate-token");
+          next(); // If the token is valid, continue
+        } catch (error) {
+          toast.error("Accès refusé. Veuillez trouver un code valide.");
+          next({ name: "login" }); // Redirect to login if token validation fails
+        }
+      },
+    },
 
     {
-      path: "/boredRoom",
-      name: "boredRoom",
+      path: "/boredRoomv1",
+      name: "boredRoomv1",
       component: BoredRoomView,
       beforeEnter: async (to, from, next) => {
         const token = localStorage.getItem("token");
