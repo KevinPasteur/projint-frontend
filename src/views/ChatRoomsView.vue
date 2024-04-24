@@ -1,7 +1,11 @@
 <template>
   <div class="page-wrapper">
     <div v-if="isLoading"></div>
-    <div v-if="!isLoading && chatRooms.length > 0" class="roomContainer" style="width: 100%">
+    <div
+      v-if="!isLoading && chatRooms.length > 0"
+      class="roomContainer"
+      style="width: 100%"
+    >
       <h1>Bored Room</h1>
       <ul class="list-group">
         <li v-for="room in chatRooms" :key="room.id" class="list-group-item">
@@ -28,9 +32,11 @@
           </router-link>
         </li>
       </ul>
-      <router-link :to="{ name: 'createroom' }">
+      <div class="float">
+        <router-link :to="{ name: 'createroom' }">
           <button>Créer ma Room</button>
         </router-link>
+      </div>
     </div>
 
     <div v-else class="text-center">
@@ -245,27 +251,27 @@ a {
 /* Skill bar element */
 .timer-bar {
   height: 100%; /* Full height of container */
-  background-color: #92DD00; /* Initial green color */
+  background-color: #92dd00; /* Initial green color */
   transition: background-color 0.5s ease-in-out;
   border-radius: 20px; /* Add rounded corners */
 }
 
 .timer-bar--full {
-  background-color: #92DD00;
+  background-color: #92dd00;
   height: 100%; /* Full height of container */
   transition: background-color 0.5s ease-in-out;
   border-radius: 20px; /* Add rounded corners */
 }
 
 .timer-bar--medium {
-  background-color: #FFB600;
+  background-color: #ffb600;
   height: 100%; /* Full height of container */
   transition: background-color 0.5s ease-in-out;
   border-radius: 20px; /* Add rounded corners */
 }
 
 .timer-bar--low {
-  background-color: #F24822;
+  background-color: #f24822;
   height: 100%; /* Full height of container */
   transition: background-color 0.5s ease-in-out;
   border-radius: 20px; /* Add rounded corners */
@@ -280,11 +286,19 @@ h5 {
   font-optical-sizing: auto;
   font-weight: 700;
   font-style: normal;
-  font-size:16px;
+  font-size: 16px;
 }
 
 .shadow {
   /* syntaxe: offset-x | offset-y | blur-radius | spread-radius | color */
   box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.float {
+  position: fixed;
+  top: 90%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 80%;
 }
 </style>
