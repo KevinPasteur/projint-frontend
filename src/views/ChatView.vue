@@ -122,7 +122,41 @@ export default {
   /* Styles pour le nom de l'expéditeur */
 }
 .input-area {
-  /* Styles pour la zone de saisie */
+  /* Styles pour la zone de saisie des messages */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  width: 80%;
+}
+
+.centreh2 {
+  text-align: center;
+}
+
+#text {
+  color: white;
+  padding: 0.5rem 1rem 1rem 0.5rem;
+  font-family: "Figtree", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 14px;
+}
+
+.float {
+  position: fixed;
+  top: 95%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+h2 {
+  font-family: "Figtree", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 700;
+  font-style: normal;
+  font-size: 16px;
 }
 
 .my-message {
