@@ -301,13 +301,6 @@ h5 {
   box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
 }
 
-.float {
-  position: fixed;
-  top: 90%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-
 .card {
   background-color: #fff;
   border-radius: 10px;

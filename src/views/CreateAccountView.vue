@@ -235,9 +235,10 @@ p {
   margin-bottom: 1rem;
 }
 
+/*
 form {
   max-width: 400px;
-}
+}*/
 
 /* Pour le input anonyme */
 

@@ -6,7 +6,7 @@
           <
         </router-link>
       </div>
-      <div class="col-6 create-room-header"><h1>Crée ta Room</h1></div>
+      <div class="col-8 create-room-header"><h1>Crée ta Room</h1></div>
     </div>
 
     <form @submit.prevent="createRoom" class="w-100">

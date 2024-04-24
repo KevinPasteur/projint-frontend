@@ -20,7 +20,7 @@
           >: {{ message.message.content }}
         </div>
       </div>
-      <div class="input-area float">
+      <div class="input float">
         <input
           v-model="messageText"
           type="text"
@@ -144,13 +144,6 @@ export default {
   font-size: 14px;
 }
 
-.float {
-  position: fixed;
-  top: 95%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-
 h2 {
   font-family: "Figtree", sans-serif;
   font-optical-sizing: auto;
@@ -165,6 +158,8 @@ h2 {
 
 .float {
   position: fixed;
+  max-width: 400px;
+  width: 70vw;
   top: 90%;
   left: 50%;
   transform: translate(-50%, -50%);
