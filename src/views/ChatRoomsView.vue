@@ -18,7 +18,7 @@
                   </div>
                 </div>
                 <div class="badge">
-                  <span>{{ room.connectedUsers ?? 0 }}</span>
+                  <span>{{ room.currentUsers ?? 0 }}</span>
                 </div>
               </div>
               <div class="mt-3">
@@ -63,6 +63,7 @@
 
 <script>
 import { socket } from "@/socket";
+import axios from "axios";
 
 export default {
   data() {
@@ -74,6 +75,7 @@ export default {
   },
   mounted() {
     this.fetchChatRooms();
+    this.fetchChatRoomss();
 
     socket.on("roomCreated", (newRoom) => {
       this.chatRooms.push(newRoom);
@@ -100,6 +102,15 @@ export default {
       });
     },
 
+    fetchChatRoomss() {
+      axios
+        .get("http://localhost:5000/api/rooms")
+        .then((response) => {
+          console.log(response);
+        })
+        .catch((error) => {});
+    },
+
     createChatRoom() {
       if (this.newRoomName.trim() !== "") {
         socket.emit("createRoom", this.newRoomName);
@@ -123,8 +134,6 @@ export default {
       const totalTime = expirationTime - room.createDate;
       const remainingTime = expirationTime - now;
       const width = (remainingTime / totalTime) * 100; // Convert to percentage
-      console.log("total time: " + totalTime);
-      console.log(width);
       return Math.max(0, width); // Ensure non-negative value
     },
 
