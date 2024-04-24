@@ -120,7 +120,7 @@ button {
     min-width: 400px;
   }
   .happy {
-    top: 300px;
+    top: 290px;
     width: 140px;
     left: -5px;
   }
@@ -131,7 +131,7 @@ button {
     min-width: 360px;
   }
   .happy {
-    top: 300px;
+    top: 295px;
     left: 5px;
     width: 110px;
   }
@@ -142,7 +142,7 @@ button {
     min-width: 310px;
   }
   .happy {
-    top: 300px;
+    top: 295px;
     left: 0px;
     width: 90px;
   }
@@ -153,7 +153,7 @@ button {
     min-width: 255px;
   }
   .happy {
-    top: 310px;
+    top: 300px;
     left: -5px;
     width: 70px;
   }
