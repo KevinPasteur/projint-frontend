@@ -1,7 +1,7 @@
 <template>
   <div class="page-wrapper">
     <div v-if="isLoading"></div>
-    <div v-if="!isLoading && chatRooms.length > 0" style="width: 100%">
+    <div v-if="!isLoading && chatRooms.length > 0" class="roomContainer" style="width: 100%">
       <ul class="list-group">
         <li v-for="room in chatRooms" :key="room.id" class="list-group-item">
           <router-link :to="{ name: 'chatroom', params: { roomId: room.id } }">
@@ -9,9 +9,6 @@
             <div class="card" style="width: 100% !important">
               <div class="card-body">
                 <h5 class="card-title">{{ room.name }}</h5>
-                <h6 class="card-subtitle mb-2 text-muted">
-                  {{ room.description }}
-                </h6>
                 <div class="d-flex justify-content-between align-items-center">
                   <span class="badge bg-primary">
                     {{ room.connectedUsers }} connectés
@@ -30,6 +27,9 @@
           </router-link>
         </li>
       </ul>
+      <router-link :to="{ name: 'createroom' }">
+          <button>Créer ma Room</button>
+        </router-link>
     </div>
 
     <div v-else class="text-center">
@@ -238,34 +238,47 @@ a {
   width: 100%; /* Full width */
   background-color: #ddd; /* Grey background */
   height: 10px; /* Adjust bar height as needed */
+  border-radius: 20px;
 }
 
 /* Skill bar element */
 .timer-bar {
   height: 100%; /* Full height of container */
-  background-color: green; /* Initial green color */
+  background-color: #92DD00; /* Initial green color */
   transition: background-color 0.5s ease-in-out;
-  border-radius: 2px; /* Add rounded corners */
+  border-radius: 20px; /* Add rounded corners */
 }
 
 .timer-bar--full {
-  background-color: green;
+  background-color: #92DD00;
   height: 100%; /* Full height of container */
   transition: background-color 0.5s ease-in-out;
-  border-radius: 2px; /* Add rounded corners */
+  border-radius: 20px; /* Add rounded corners */
 }
 
 .timer-bar--medium {
-  background-color: orange;
+  background-color: #FFB600;
   height: 100%; /* Full height of container */
   transition: background-color 0.5s ease-in-out;
-  border-radius: 2px; /* Add rounded corners */
+  border-radius: 20px; /* Add rounded corners */
 }
 
 .timer-bar--low {
-  background-color: red;
+  background-color: #F24822;
   height: 100%; /* Full height of container */
   transition: background-color 0.5s ease-in-out;
-  border-radius: 2px; /* Add rounded corners */
+  border-radius: 20px; /* Add rounded corners */
+}
+
+.roomContainer {
+  border-style: none;
+}
+
+h5 {
+  font-family: "Figtree", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 700;
+  font-style: normal;
+  font-size:16px;
 }
 </style>
