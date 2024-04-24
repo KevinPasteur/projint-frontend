@@ -64,7 +64,7 @@ const submitLoginForm = async () => {
     const data = await response.json();
     if (response.ok) {
       localStorage.setItem("token", data.token);
-      localStorage.setItem("user", JSON.stringify(data.user));
+      localStorage.setItem("user", JSON.stringify(data.userToReturn));
       // Rediriger puis afficher le toast de succès
       router.push({ name: "boredroom" }).then(() => {
         toast.success("Connexion réussie!", {
@@ -131,7 +131,6 @@ label {
 .button {
   display: flex;
   justify-content: center;
-
 }
 
 @media (min-width: 769px) {
@@ -139,8 +138,8 @@ label {
     width: 400px;
   }
   #email {
-  width: 65%;
-}
+    width: 65%;
+  }
 }
 
 @media (max-width: 768px) {
@@ -149,12 +148,12 @@ label {
     max-width: 400px;
   }
   #email {
-  width: 75%;
-}
+    width: 75%;
+  }
 }
 
 @media (max-width: 425px) {
-  .centreVertical{
+  .centreVertical {
     width: 360px;
   }
   button {
@@ -162,12 +161,12 @@ label {
     max-width: 360px;
   }
   #email {
-  width: 72%;
-}
+    width: 72%;
+  }
 }
 
 @media (max-width: 375px) {
-  .centreVertical{
+  .centreVertical {
     width: 310px;
   }
   button {
@@ -175,20 +174,20 @@ label {
     max-width: 310px;
   }
   #email {
-  width: 67%;
-}
+    width: 67%;
+  }
 }
 
 @media (max-width: 320px) {
-  .centreVertical{
+  .centreVertical {
     width: 255px;
   }
   button {
     min-width: 255px;
-    max-width:255px;
+    max-width: 255px;
   }
   #email {
-  width: 60%;
+    width: 60%;
   }
 }
 
