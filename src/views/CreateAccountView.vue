@@ -148,6 +148,10 @@ const submitForm = async () => {
 </template>
 
 <style>
+h1{
+  margin-bottom: 1.5rem !important;
+}
+
 .is-invalid {
   border-color: red;
 }
@@ -196,6 +200,10 @@ input {
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+
+button {
+  border-radius: 10px;
 }
 
 @media (max-width: 768px) {

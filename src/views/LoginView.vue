@@ -34,7 +34,6 @@
           <button type="submit">Me Connecter</button>
         </div>
       </form>
-      <p class="lien">J'ai oublié mon mot de passe</p>
     </div>
   </div>
 </template>
@@ -126,6 +125,10 @@ label {
 
 .champs {
   margin-bottom: 2rem;
+}
+
+button {
+  border-radius: 10px;
 }
 
 .button {
