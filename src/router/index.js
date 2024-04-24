@@ -1,7 +1,5 @@
 import { createRouter, createWebHistory } from "vue-router";
-import TestView from "../views/TestView.vue";
 import CreateAccountView from "../views/CreateAccountView.vue";
-import BoredRoomView from "../views/BoredRoomView.vue";
 import LoginView from "../views/LoginView.vue";
 import SignupWithCodeView from "../views/SignupWithCodeView.vue";
 import ChatRoomsView from "../views/ChatRoomsView.vue";
@@ -19,16 +17,6 @@ const router = createRouter({
       path: "/",
       name: "home",
       component: SignupWithCodeView,
-    },
-    {
-      path: "/about",
-      name: "about",
-      component: () => import("../views/AboutView.vue"),
-    },
-    {
-      path: "/test",
-      name: "test",
-      component: TestView,
     },
     {
       path: "/signup-with-code",
@@ -124,30 +112,6 @@ const router = createRouter({
           next(); // If the token is valid, continue
         } catch (error) {
           toast.error("Accès refusé. Veuillez trouver un code valide.");
-          next({ name: "login" }); // Redirect to login if token validation fails
-        }
-      },
-    },
-
-    {
-      path: "/boredRoomv1",
-      name: "boredRoomv1",
-      component: BoredRoomView,
-      beforeEnter: async (to, from, next) => {
-        const token = localStorage.getItem("token");
-        if (!token) {
-          toast.error("Accès refusé. Veuillez vous connecter svp.");
-          next({ name: "login" }); // Redirect to login if no token found
-          return; // Stop execution if there's no token
-        }
-
-        try {
-          // The token is automatically included by the Axios interceptor
-          await API.post("/validate-token");
-          next(); // If the token is valid, continue
-        } catch (error) {
-          console.error("Error validating token:", error);
-          toast.error("Accès refusé. Veuillez vous connecter svp.");
           next({ name: "login" }); // Redirect to login if token validation fails
         }
       },

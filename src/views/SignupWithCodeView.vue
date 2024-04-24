@@ -2,12 +2,12 @@
   <div class="signup-view">
     <div class="contientTout">
       <div class="containerImg">
-      <img
-        alt="Vue logo"
-        class="logo"
-        src="@/assets/unboredAccueil.svg"
-        width="200px"
-      />
+        <img
+          alt="Vue logo"
+          class="logo"
+          src="@/assets/unboredAccueil.svg"
+          width="200px"
+        />
       </div>
       <form @submit.prevent="submitCode">
         <div class="containerCode">
@@ -21,14 +21,12 @@
           />
         </div>
         <button type="submit" class="center-button">Rejoindre unbored</button>
-        <img
-      alt="Vue logo"
-      class="happy"
-      src="@/assets/stickerHappy.svg"
-    />
+        <img alt="Vue logo" class="happy" src="@/assets/stickerHappy.svg" />
       </form>
       <div class="containerLien">
-        <p class="lien">Je suis déjà membre</p>
+        <router-link :to="{ name: 'login' }">
+          <p class="lien">Je suis déjà membre</p>
+        </router-link>
       </div>
     </div>
   </div>
@@ -85,7 +83,10 @@ const submitCode = async () => {
   position: absolute;
   top: 50%; /* Positionner le haut de l'élément à 50% du contenant parent */
   left: 50%; /* Positionner la gauche de l'élément à 50% du contenant parent */
-  transform: translate(-50%, -50%); /* Centrer l'élément verticalement et horizontalement */
+  transform: translate(
+    -50%,
+    -50%
+  ); /* Centrer l'élément verticalement et horizontalement */
 }
 
 .containerImg {
@@ -172,7 +173,7 @@ input {
   justify-content: center;
 }
 
-.lien{
+.lien {
   display: inline-block;
   margin-top: 140px;
 }
