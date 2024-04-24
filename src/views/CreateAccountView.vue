@@ -69,7 +69,7 @@ const submitForm = async () => {
 <template>
   <div class="create-user-form">
     <div class="containAll">
-      <h1>Inscription</h1>
+      <h1 class="mb-4">Inscription</h1>
       <form @submit.prevent="submitForm">
         <div class="prenomNom container">
           <div class="prenom">
@@ -108,6 +108,7 @@ const submitForm = async () => {
           <label for="email">Adresse HEIG</label>
           <div class="email-input-container">
             <input
+              style="width: 70%"
               id="email"
               type="text"
               v-model="user.email"
@@ -148,10 +149,6 @@ const submitForm = async () => {
 </template>
 
 <style>
-h1{
-  margin-bottom: 1.5rem !important;
-}
-
 .is-invalid {
   border-color: red;
 }
@@ -208,26 +205,26 @@ button {
 
 @media (max-width: 768px) {
   #email {
-  width: 73%;
+    width: 73%;
   }
 }
 
 @media (max-width: 425px) {
   #email {
-  width: 70%;
-}
+    width: 70%;
+  }
 }
 
 @media (max-width: 375px) {
   #email {
-  width: 65%;
-}
+    width: 65%;
+  }
 }
 
 @media (max-width: 320px) {
   #email {
-  width: 57%;
-}
+    width: 57%;
+  }
 }
 
 p {

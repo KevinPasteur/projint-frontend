@@ -1,31 +1,33 @@
 <template>
-  <div class="chat-room">
-    <button @click="$router.push('/boredroom')">Back to Boredroom</button>
-    <h2>Chat Room: {{ roomName }}</h2>
-    <div class="messages">
-      <div v-for="message in messages" :key="message.id">
-        {{
-          new Date(message.message.timestamp).toLocaleTimeString([], {
-            hour: "2-digit",
-            minute: "2-digit",
-          })
-        }}
-        -
-        <span
-          class="sender"
-          :class="{ 'my-message': message.message.senderId === userId }"
-        >
-          {{ message.message.username }}</span
-        >: {{ message.message.content }}
+  <div class="page-wrapper">
+    <div class="chat-room">
+      <button @click="$router.push('/boredroom')">Back to Boredroom</button>
+      <h2>Chat Room: {{ roomName }}</h2>
+      <div class="messages">
+        <div v-for="message in messages" :key="message.id">
+          {{
+            new Date(message.message.timestamp).toLocaleTimeString([], {
+              hour: "2-digit",
+              minute: "2-digit",
+            })
+          }}
+          -
+          <span
+            class="sender"
+            :class="{ 'my-message': message.message.senderId === userId }"
+          >
+            {{ message.message.username }}</span
+          >: {{ message.message.content }}
+        </div>
       </div>
-    </div>
-    <div class="input-area">
-      <input
-        v-model="messageText"
-        type="text"
-        placeholder="Entrez votre message..."
-      />
-      <button @click="sendMessage">Envoyer</button>
+      <div class="input-area float">
+        <input
+          v-model="messageText"
+          type="text"
+          placeholder="Entrez votre message..."
+          @keyup.enter="sendMessage"
+        />
+      </div>
     </div>
   </div>
 </template>
@@ -125,5 +127,12 @@ export default {
 
 .my-message {
   color: green;
+}
+
+.float {
+  position: fixed;
+  top: 90%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 </style>

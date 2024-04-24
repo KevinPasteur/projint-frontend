@@ -288,10 +288,6 @@ a {
   border-radius: 20px; /* Add rounded corners */
 }
 
-.roomContainer {
-  border-style: none;
-}
-
 h5 {
   font-family: "Figtree", sans-serif;
   font-optical-sizing: auto;
@@ -348,23 +344,5 @@ h5 {
   font-weight: bold;
   justify-content: center;
   align-items: center;
-}
-
-.progress {
-  height: 10px;
-  border-radius: 10px;
-}
-
-.progress div {
-  background-color: red;
-}
-
-.text1 {
-  font-size: 14px;
-  font-weight: 600;
-}
-
-.text2 {
-  color: #a5aec0;
 }
 </style>
