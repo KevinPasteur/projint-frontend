@@ -2,6 +2,7 @@
   <div class="page-wrapper">
     <div v-if="isLoading"></div>
     <div v-if="!isLoading && chatRooms.length > 0" class="roomContainer" style="width: 100%">
+      <h1>Bored Room</h1>
       <ul class="list-group">
         <li v-for="room in chatRooms" :key="room.id" class="list-group-item">
           <router-link :to="{ name: 'chatroom', params: { roomId: room.id } }">
@@ -280,5 +281,10 @@ h5 {
   font-weight: 700;
   font-style: normal;
   font-size:16px;
+}
+
+.shadow {
+  /* syntaxe: offset-x | offset-y | blur-radius | spread-radius | color */
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
 }
 </style>
