@@ -208,49 +208,25 @@ button {
 
 @media (max-width: 768px) {
   #email {
-  width: 75%;
+  width: 73%;
   }
 }
 
 @media (max-width: 425px) {
   #email {
-  width: 72%;
+  width: 70%;
 }
 }
 
 @media (max-width: 375px) {
   #email {
-  width: 67%;
+  width: 65%;
 }
 }
 
 @media (max-width: 320px) {
   #email {
-  width: 60%;
-}
-}
-
-@media (max-width: 768px) {
-  #email {
-  width: 75%;
-  }
-}
-
-@media (max-width: 425px) {
-  #email {
-  width: 72%;
-}
-}
-
-@media (max-width: 375px) {
-  #email {
-  width: 67%;
-}
-}
-
-@media (max-width: 320px) {
-  #email {
-  width: 60%;
+  width: 57%;
 }
 }
 
