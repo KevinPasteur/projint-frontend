@@ -111,6 +111,7 @@ form {
 
 button {
   margin-top: 2rem;
+  border-radius: 10px;
 }
 
 @media (max-width: 768px) {
