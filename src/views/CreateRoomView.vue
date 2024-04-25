@@ -2,9 +2,7 @@
   <div class="page-wrapper">
     <div class="row w-100 mb-3">
       <div class="col-4">
-        <router-link to="/boredroom" class="router-link retour">
-          <
-        </router-link>
+        <router-link to="/boredroom" class="router-link"> < </router-link>
       </div>
       <div class="col-8 create-room-header"><h1>Crée ta Room</h1></div>
     </div>
@@ -60,8 +58,10 @@ export default {
   },
   methods: {
     createRoom() {
-      if (this.date) {
-        console.log("date");
+      const currentDate = new Date();
+      const timestamp = currentDate.getTime();
+
+      if (this.date && this.date.getTime() > timestamp) {
         socket.emit("createRoom", {
           name: this.roomName,
           description: this.roomDescription,
@@ -70,7 +70,7 @@ export default {
         });
       } else {
         // Handle the case where no date is selected
-        alert("Veuillez sélectionner une date de fin.");
+        alert("Veuillez vérifier la date de fin.");
       }
 
       socket.on("roomCreated", (id) => {

@@ -17,9 +17,6 @@
                     <h6 class="mb-0">{{ room.name }}</h6>
                   </div>
                 </div>
-                <div class="badge">
-                  <span>{{ room.currentUsers ?? 0 }}</span>
-                </div>
               </div>
               <div class="mt-3">
                 <div class="container-bar">
@@ -75,7 +72,6 @@ export default {
   },
   mounted() {
     this.fetchChatRooms();
-    this.fetchChatRoomss();
 
     socket.on("roomCreated", (newRoom) => {
       this.chatRooms.push(newRoom);
@@ -100,15 +96,6 @@ export default {
         this.isLoading = false;
         this.updateBackground();
       });
-    },
-
-    fetchChatRoomss() {
-      axios
-        .get("https://academic-brandie-unbored.koyeb.app/api/rooms")
-        .then((response) => {
-          console.log(response);
-        })
-        .catch((error) => {});
     },
 
     createChatRoom() {
