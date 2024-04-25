@@ -52,14 +52,17 @@ const userEmail = computed(() => loginEmail.value + baseDomain);
 
 const submitLoginForm = async () => {
   try {
-    const response = await fetch("http://localhost:5000/login", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        email: userEmail.value,
-        motDePasse: loginPassword.value,
-      }),
-    });
+    const response = await fetch(
+      "https://academic-brandie-unbored.koyeb.app/login",
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          email: userEmail.value,
+          motDePasse: loginPassword.value,
+        }),
+      }
+    );
     const data = await response.json();
     if (response.ok) {
       localStorage.setItem("token", data.token);

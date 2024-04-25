@@ -42,11 +42,14 @@ const signupCode = ref("");
 
 const submitCode = async () => {
   try {
-    const response = await fetch("http://localhost:5000/verify-code", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ code: signupCode.value }),
-    });
+    const response = await fetch(
+      "https://academic-brandie-unbored.koyeb.app/verify-code",
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ code: signupCode.value }),
+      }
+    );
     const data = await response.json();
     if (response.ok) {
       localStorage.setItem("tokenC", data.tokenC);
@@ -186,6 +189,6 @@ a {
   font-size: 14px !important;
   display: inline-block;
   margin-top: 140px;
-  color: #1C1C1C;
+  color: #1c1c1c;
 }
 </style>

@@ -104,7 +104,7 @@ export default {
 
     fetchChatRoomss() {
       axios
-        .get("http://localhost:5000/api/rooms")
+        .get("https://academic-brandie-unbored.koyeb.app/api/rooms")
         .then((response) => {
           console.log(response);
         })

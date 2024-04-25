@@ -60,7 +60,7 @@ export default {
         );
 
       axios
-        .get("http://localhost:5000/api/rooms/" + roomId)
+        .get("https://academic-brandie-unbored.koyeb.app/api/rooms/" + roomId)
         .then((response) => {
           if (!response.data.roomId) this.$router.push("/boredroom");
 
