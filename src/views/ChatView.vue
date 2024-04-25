@@ -142,8 +142,9 @@ export default {
 
 <style>
 .chat-room {
+  margin-top: 30px;
   height: calc(
-    100vh - 120px
+    95vh - 120px
   ); /* Adjust height based on header and footer heights */
   overflow-y: scroll; /* Enable scrolling for the message area */
   overflow: hidden;
