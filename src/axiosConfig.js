@@ -2,7 +2,7 @@
 import axios from "axios";
 
 const API = axios.create({
-  baseURL: "http://localhost:5000", // Ensure this is set correctly
+  baseURL: "https://academic-brandie-unbored.koyeb.app", // Ensure this is set correctly
 });
 
 // Ajouter un intercepteur de requête pour insérer le token avant chaque requête
